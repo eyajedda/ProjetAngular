@@ -1,0 +1,55 @@
+<div class="container">
+
+  <p>Liste des résidences</p>
+
+  <p>Entrer l'adresse de recherche</p>
+  <form>
+    <input name="AddresseRecherche" type="text" [(ngModel)]="AddresseRecherche" placeholder="Rechercher par adresse">
+  </form>
+
+  <!-- Tableau des champs -->
+  <table class="residence-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Statut</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let residence of listResidences; let i = index">
+        <tr *ngIf="!AddresseRecherche || AddresseRecherche === residence.address">
+          <td>{{ residence.id }}</td>
+          <td>{{ residence.name }}</td>
+
+          <!-- Statut avec icônes -->
+          <td>
+            <span [ngClass]="getStatus(residence.status)">
+              <ng-container [ngSwitch]="residence.status">
+                <span *ngSwitchCase="'Disponible'" class="icon available">✔️ Disponible</span>
+                <span *ngSwitchCase="'En Construction'" class="icon under-construction">🚧 En Construction</span>
+                <span *ngSwitchCase="'Vendu'" class="icon sold">❌ Vendu</span>
+                <span *ngSwitchDefault class="icon unknown">❓ Inconnu</span>
+              </ng-container>
+            </span>
+          </td>
+
+          <!-- Image -->
+          <td><img [src]="residence.image" alt="{{ residence.name }}" class="residence-image" /></td>
+
+          <!-- Actions -->
+          <td>
+            <a class="btn btn-primary my-2 me-2" (click)="ShowLocation(i)" >Show Location</a>
+            <a class="btn btn-secondary me-2 " (click)="addToFavorites(i)" >🤍 Like</a>
+            <a class="btn btn-warning me-2 " [routerLink]="['detail', residence.id]" >Details</a>
+            <a class="btn btn-primary me-2 " [routerLink]="['apartmentByResidence', residence.id]" >Apartments list </a>
+
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+</div>

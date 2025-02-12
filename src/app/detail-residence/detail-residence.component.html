@@ -1,0 +1,13 @@
+<div class="container">
+<div class="card">
+    <div class="card-header">
+        ID de la résidence: {{ identifiant }}    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a class="btn btn-primary my-2 me-2"  (click)="nextResidence()">Next</a>
+      <a class="btn btn-secondary me-2"  [routerLink]="['/add-residence']">Add Residence</a>
+      <a class="btn btn-warning me-2" [routerLink]="['/add-residence', identifiant]">Update Residence</a>
+    </div>
+  </div>
+</div>
