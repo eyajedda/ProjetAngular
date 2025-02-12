@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute , Router } from '@angular/router';
-import { Residence } from '../core/models/Residence';
+import { Residence } from '../../core/models/Residence';
 
 @Component({
   selector: 'app-detail-residence',
